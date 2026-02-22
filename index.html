@@ -860,7 +860,7 @@
         دقت، کیفیت و تحویل به موقع — تعهد ماست.
       </p>
       <div class="hero-buttons">
-        <a href="#contact" class="btn-primary">درخواست قیمت</a>
+        <a href="#order" class="btn-primary">📋 ثبت سفارش</a>
         <a href="#portfolio" class="btn-secondary">نمونه کارها</a>
       </div>
 
@@ -1009,7 +1009,113 @@
     </div>
   </section>
 
+  <!-- ORDER -->
+  <section id="order" style="padding: 6rem 3rem; background: var(--steel);">
+    <div class="section-header">
+      <span class="section-tag">ثبت سفارش آنلاین</span>
+      <h2>سفارش خود را ثبت کنید</h2>
+      <div class="divider center"></div>
+      <p>فرم زیر را تکمیل کنید — ظرف ۲۴ ساعت با شما تماس می‌گیریم</p>
+    </div>
+
+    <div style="max-width: 700px; margin: 0 auto;">
+      <div style="background: var(--steel-mid); border: 1px solid rgba(200,146,42,0.2); border-radius: 20px; padding: 2.5rem;">
+
+        <!-- SUCCESS MESSAGE -->
+        <div id="order-success" style="display:none; text-align:center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+          <h3 style="color: var(--gold); margin-bottom: 0.8rem;">سفارش شما ثبت شد!</h3>
+          <p style="color: var(--silver);">به زودی با شما تماس می‌گیریم. ممنون از اعتماد شما.</p>
+        </div>
+
+        <form id="order-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <!-- فیلد مخفی برای شناسایی نوع فرم -->
+          <input type="hidden" name="_subject" value="🔩 سفارش جدید - پارساصنعت اصفهان">
+          <input type="hidden" name="_language" value="fa">
+          <input type="text" name="_gotcha" style="display:none">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <label style="display:block; font-size:0.82rem; color:var(--silver); margin-bottom:0.4rem;">نام و نام خانوادگی *</label>
+              <input type="text" name="name" required placeholder="علی رضایی"
+                style="width:100%; background:var(--steel); border:1px solid rgba(200,146,42,0.2); border-radius:8px; padding:0.75rem 1rem; color:var(--white); font-family:'Vazirmatn',sans-serif; font-size:0.88rem; outline:none;">
+            </div>
+            <div>
+              <label style="display:block; font-size:0.82rem; color:var(--silver); margin-bottom:0.4rem;">شماره تماس *</label>
+              <input type="tel" name="phone" required placeholder="۰۹۱۳-XXX-XXXX"
+                style="width:100%; background:var(--steel); border:1px solid rgba(200,146,42,0.2); border-radius:8px; padding:0.75rem 1rem; color:var(--white); font-family:'Vazirmatn',sans-serif; font-size:0.88rem; outline:none;">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <label style="display:block; font-size:0.82rem; color:var(--silver); margin-bottom:0.4rem;">نوع خدمت *</label>
+              <select name="service" required
+                style="width:100%; background:var(--steel); border:1px solid rgba(200,146,42,0.2); border-radius:8px; padding:0.75rem 1rem; color:var(--white); font-family:'Vazirmatn',sans-serif; font-size:0.88rem; outline:none; cursor:pointer;">
+                <option value="">انتخاب کنید...</option>
+                <option>تراشکاری</option>
+                <option>فرزکاری</option>
+                <option>ساخت قطعه سفارشی</option>
+                <option>تعمیر و بازسازی قطعه</option>
+                <option>سنگ‌زنی و پرداخت</option>
+                <option>مشاوره فنی</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block; font-size:0.82rem; color:var(--silver); margin-bottom:0.4rem;">جنس قطعه</label>
+              <select name="material"
+                style="width:100%; background:var(--steel); border:1px solid rgba(200,146,42,0.2); border-radius:8px; padding:0.75rem 1rem; color:var(--white); font-family:'Vazirmatn',sans-serif; font-size:0.88rem; outline:none; cursor:pointer;">
+                <option value="">مشخص نیست</option>
+                <option>فولاد</option>
+                <option>آلومینیوم</option>
+                <option>برنج / برنز</option>
+                <option>فولاد ضدزنگ (استیل)</option>
+                <option>چدن</option>
+                <option>پلاستیک صنعتی</option>
+                <option>سایر</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <label style="display:block; font-size:0.82rem; color:var(--silver); margin-bottom:0.4rem;">تعداد قطعه</label>
+              <input type="number" name="quantity" min="1" placeholder="مثلاً: ۵"
+                style="width:100%; background:var(--steel); border:1px solid rgba(200,146,42,0.2); border-radius:8px; padding:0.75rem 1rem; color:var(--white); font-family:'Vazirmatn',sans-serif; font-size:0.88rem; outline:none;">
+            </div>
+            <div>
+              <label style="display:block; font-size:0.82rem; color:var(--silver); margin-bottom:0.4rem;">موعد تحویل مورد نظر</label>
+              <select name="deadline"
+                style="width:100%; background:var(--steel); border:1px solid rgba(200,146,42,0.2); border-radius:8px; padding:0.75rem 1rem; color:var(--white); font-family:'Vazirmatn',sans-serif; font-size:0.88rem; outline:none; cursor:pointer;">
+                <option>فوری (۱-۲ روز)</option>
+                <option>این هفته</option>
+                <option>این ماه</option>
+                <option>بدون محدودیت</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="display:block; font-size:0.82rem; color:var(--silver); margin-bottom:0.4rem;">توضیحات و جزئیات سفارش *</label>
+            <textarea name="description" required rows="4" placeholder="ابعاد، دقت مورد نیاز، نقشه فنی دارید یا نه، و هر توضیح دیگری..."
+              style="width:100%; background:var(--steel); border:1px solid rgba(200,146,42,0.2); border-radius:8px; padding:0.75rem 1rem; color:var(--white); font-family:'Vazirmatn',sans-serif; font-size:0.88rem; outline:none; resize:vertical;"></textarea>
+          </div>
+
+          <div style="background: rgba(200,146,42,0.07); border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; color: var(--silver);">
+            💡 <strong style="color:var(--gold)">نکته:</strong> اگر نقشه فنی دارید، بعد از ثبت سفارش می‌توانید آن را از طریق واتساپ برای ما ارسال کنید.
+          </div>
+
+          <button type="submit" id="order-btn"
+            style="width:100%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--steel); border:none; padding:1rem; border-radius:10px; font-size:1rem; font-weight:700; font-family:'Vazirmatn',sans-serif; cursor:pointer; transition:all 0.3s;">
+            📋 ثبت سفارش
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
+
   <section id="contact">
     <div class="section-header">
       <span class="section-tag">ارتباط با ما</span>
@@ -1276,6 +1382,34 @@
   })();
   </script>
   <script>
+    // Order form Formspree handler
+    const orderForm = document.getElementById('order-form');
+    if(orderForm) {
+      orderForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('order-btn');
+        btn.textContent = '⏳ در حال ارسال...';
+        btn.disabled = true;
+        try {
+          const res = await fetch(orderForm.action, {
+            method: 'POST',
+            body: new FormData(orderForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          if(res.ok) {
+            orderForm.style.display = 'none';
+            document.getElementById('order-success').style.display = 'block';
+          } else {
+            btn.textContent = '❌ خطا در ارسال — دوباره تلاش کنید';
+            btn.disabled = false;
+          }
+        } catch(err) {
+          btn.textContent = '❌ خطا در ارسال — دوباره تلاش کنید';
+          btn.disabled = false;
+        }
+      });
+    }
+
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
       const nav = document.querySelector('nav');
