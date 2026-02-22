@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="تراشکاری پارساصنعت اصفهان - ارائه خدمات تراشکاری، فرزکاری و ماشین‌کاری دقیق در اشترجان، اصفهان. با سابقه درخشان در صنعت، بهترین کیفیت را تضمین می‌کنیم.">
+  <meta name="keywords" content="تراشکاری اصفهان, فرزکاری اصفهان, تراشکاری اشترجان, ماشین‌کاری دقیق, پارساصنعت, تراشکاری صنعتی">
+  <meta name="author" content="تراشکاری پارساصنعت">
+  <title>تراشکاری پارساصنعت اصفهان | خدمات تراشکاری و فرزکاری</title>
+  <link rel="canonical" href="https://yourusername.github.io">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="تراشکاری پارساصنعت اصفهان">
+  <meta property="og:description" content="خدمات تراشکاری، فرزکاری و ماشین‌کاری دقیق در اشترجان، اصفهان">
+  <meta property="og:type" content="website">
+
+  <!-- Schema.org structured data for local SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "تراشکاری پارساصنعت",
+    "description": "ارائه خدمات تراشکاری، فرزکاری و ماشین‌کاری دقیق",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "اشترجان",
+      "addressRegion": "اصفهان",
+      "addressCountry": "IR"
+    },
+    "telephone": "",
+    "url": "https://yourusername.github.io"
+  }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
+
+    :root {
+      --steel: #1a1f2e;
+      --steel-mid: #232a3b;
+      --steel-light: #2d3650;
+      --gold: #c8922a;
+      --gold-light: #e8a830;
+      --silver: #8a9ab5;
+      --white: #f0f4ff;
+      --accent: #e05c1a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: var(--steel);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== NOISE TEXTURE OVERLAY ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(26, 31, 46, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(200, 146, 42, 0.2);
+      transition: all 0.3s;
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span {
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--silver);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 3rem 4rem;
+    }
+
+    /* Gear decorations */
+    .gear-bg {
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 600px;
+      height: 600px;
+      opacity: 0.05;
+      animation: spin 60s linear infinite;
+    }
+
+    .gear-bg2 {
+      position: absolute;
+      left: -120px;
+      bottom: -100px;
+      width: 400px;
+      height: 400px;
+      opacity: 0.03;
+      animation: spin 40s linear infinite reverse;
+    }
+
+    @keyframes spin {
+      from { transform: translateY(-50%) rotate(0deg); }
+      to { transform: translateY(-50%) rotate(360deg); }
+    }
+    @keyframes spin2 {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .gear-bg2 { animation: spin2 40s linear infinite reverse; }
+
+    .hero-content {
+      max-width: 680px;
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200, 146, 42, 0.15);
+      border: 1px solid rgba(200, 146, 42, 0.4);
+      color: var(--gold-light);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 .highlight {
+      color: var(--gold);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      border-radius: 2px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--silver);
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--steel);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(200, 146, 42, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(200, 146, 42, 0.5);
+    }
+
+    .btn-secondary {
+      border: 1.5px solid rgba(200, 146, 42, 0.4);
+      color: var(--gold-light);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(200, 146, 42, 0.1);
+      border-color: var(--gold);
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      margin-top: 4rem;
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: right;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--silver);
+      margin-top: 0.3rem;
+    }
+
+    /* ===== SECTION COMMON ===== */
+    section {
+      padding: 6rem 3rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-tag {
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--silver);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      background: var(--steel-mid);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(200,146,42,0.05) 0%, transparent 60%);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .about-text h2 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .about-text p {
+      color: var(--silver);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+
+    .about-features {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(200, 146, 42, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    /* Machine visual */
+    .about-visual {
+      position: relative;
+    }
+
+    .machine-card {
+      background: var(--steel-light);
+      border: 1px solid rgba(200,146,42,0.15);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .machine-icon-big {
+      font-size: 6rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .machine-card h3 {
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .machine-card p {
+      color: var(--silver);
+      font-size: 0.85rem;
+    }
+
+    /* ===== SERVICES ===== */
+    #services {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .services-section {
+      padding: 6rem 3rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--steel-mid);
+      border: 1px solid rgba(200,146,42,0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(200,146,42,0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: var(--white);
+    }
+
+    .service-card p {
+      color: var(--silver);
+      font-size: 0.88rem;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ===== PORTFOLIO ===== */
+    #portfolio {
+      background: var(--steel-mid);
+      padding: 6rem 3rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .portfolio-item {
+      background: var(--steel-light);
+      border: 1px solid rgba(200,146,42,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .portfolio-item:hover {
+      border-color: rgba(200,146,42,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .portfolio-img {
+      height: 200px;
+      background: var(--steel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      border-bottom: 1px solid rgba(200,146,42,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200,146,42,0.05) 0%, transparent 70%);
+    }
+
+    .portfolio-info {
+      padding: 1.5rem;
+    }
+
+    .portfolio-info h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .portfolio-info p {
+      color: var(--silver);
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    .portfolio-tag {
+      display: inline-block;
+      background: rgba(200,146,42,0.15);
+      color: var(--gold);
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      margin-top: 0.8rem;
+    }
+
+    .portfolio-notice {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2rem;
+      background: rgba(200,146,42,0.05);
+      border: 1px dashed rgba(200,146,42,0.3);
+      border-radius: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .portfolio-notice p {
+      color: var(--silver);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .portfolio-notice a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      padding: 6rem 3rem;
+    }
+
+    .contact-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(200,146,42,0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item-text strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-item-text span {
+      color: var(--silver);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .contact-form {
+      background: var(--steel-mid);
+      border: 1px solid rgba(200,146,42,0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--silver);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--steel);
+      border: 1px solid rgba(200,146,42,0.2);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      color: var(--white);
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .form-group select option {
+      background: var(--steel-mid);
+    }
+
+    .form-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--steel);
+      border: none;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Vazirmatn', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(200,146,42,0.4);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: rgba(0,0,0,0.4);
+      border-top: 1px solid rgba(200,146,42,0.15);
+      padding: 2rem 3rem;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--silver);
+      font-size: 0.82rem;
+    }
+
+    footer span { color: var(--gold); }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1rem 0 2rem;
+    }
+
+    .divider.center { margin: 1rem auto 2rem; }
+
+    /* ===== MOBILE ===== */
+    /* ===== BLOG SECTION ===== */
+    #blog {
+      background: var(--steel-mid);
+      padding: 6rem 3rem;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .blog-card {
+      background: var(--steel);
+      border: 1px solid rgba(200,146,42,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s;
+    }
+
+    .blog-card:hover {
+      border-color: rgba(200,146,42,0.35);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .blog-card-top {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      background: var(--steel-light);
+      border-bottom: 1px solid rgba(200,146,42,0.08);
+      position: relative;
+    }
+
+    .blog-card-top::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200,146,42,0.06) 0%, transparent 70%);
+    }
+
+    .blog-card-body {
+      padding: 1.5rem;
+    }
+
+    .blog-tag {
+      display: inline-block;
+      background: rgba(200,146,42,0.12);
+      color: var(--gold);
+      padding: 0.2rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .blog-card-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .blog-card-body p {
+      color: var(--silver);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .blog-read-more {
+      color: var(--gold);
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; font-size: 0.8rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stats-bar { gap: 1.5rem; }
+      #portfolio { padding: 4rem 1.5rem; }
+      #contact { padding: 4rem 1.5rem; }
+      .services-section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">پارساصنعت <span>اصفهان</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">درباره ما</a></li>
+      <li><a href="#services">خدمات</a></li>
+      <li><a href="#portfolio">نمونه کارها</a></li>
+      <li><a href="#blog">مقالات</a></li>
+      <li><a href="#contact">تماس</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- Gear SVG backgrounds -->
+    <svg class="gear-bg" viewBox="0 0 200 200" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M97 10h6l3 18a74 74 0 0 1 18 7l15-10 4 4-10 15a74 74 0 0 1 7 18l18 3v6l-18 3a74 74 0 0 1-7 18l10 15-4 4-15-10a74 74 0 0 1-18 7l-3 18h-6l-3-18a74 74 0 0 1-18-7l-15 10-4-4 10-15a74 74 0 0 1-7-18l-18-3v-6l18-3a74 74 0 0 1 7-18L57 24l4-4 15 10a74 74 0 0 1 18-7zm3 50a40 40 0 1 0 0 80 40 40 0 0 0 0-80z"/>
+    </svg>
+    <svg class="gear-bg2" viewBox="0 0 200 200" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M97 10h6l3 18a74 74 0 0 1 18 7l15-10 4 4-10 15a74 74 0 0 1 7 18l18 3v6l-18 3a74 74 0 0 1-7 18l10 15-4 4-15-10a74 74 0 0 1-18 7l-3 18h-6l-3-18a74 74 0 0 1-18-7l-15 10-4-4 10-15a74 74 0 0 1-7-18l-18-3v-6l18-3a74 74 0 0 1 7-18L57 24l4-4 15 10a74 74 0 0 1 18-7zm3 50a40 40 0 1 0 0 80 40 40 0 0 0 0-80z"/>
+    </svg>
+
+    <div class="hero-content">
+      <div class="hero-badge">📍 اشترجان، اصفهان</div>
+      <h1>
+        تراشکاری و فرزکاری<br>
+        <span class="highlight">پارساصنعت</span>
+      </h1>
+      <p>
+        ارائه خدمات حرفه‌ای ماشین‌کاری دقیق با بهره‌گیری از تجهیزات پیشرفته.<br>
+        دقت، کیفیت و تحویل به موقع — تعهد ماست.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">درخواست قیمت</a>
+        <a href="#portfolio" class="btn-secondary">نمونه کارها</a>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-number">+۱۰</div>
+          <div class="stat-label">سال تجربه</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">+۵۰۰</div>
+          <div class="stat-label">پروژه انجام‌شده</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">۱۰۰٪</div>
+          <div class="stat-label">رضایت مشتری</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-tag">درباره ما</span>
+        <h2>کارگاه تراشکاری <span style="color:var(--gold)">پارساصنعت</span></h2>
+        <div class="divider"></div>
+        <p>
+          کارگاه تراشکاری و فرزکاری پارساصنعت در شهر اشترجان، استان اصفهان با سال‌ها تجربه در حوزه ماشین‌کاری صنعتی، خدمات باکیفیت و دقیق به مشتریان ارائه می‌دهد.
+        </p>
+        <p>
+          ما با استفاده از دستگاه‌های مدرن تراش و فرز، قطعات صنعتی را با دقت بالا و مطابق نقشه‌های فنی مشتریان تولید می‌کنیم. رضایت مشتری اولویت اول ماست.
+        </p>
+        <div class="about-features">
+          <div class="feature-item">
+            <div class="feature-icon">⚙️</div>
+            <span>ماشین‌کاری با دقت میلیمتری</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📋</div>
+            <span>اجرا بر اساس نقشه‌های فنی</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🚚</div>
+            <span>تحویل به موقع و در زمان مقرر</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🏆</div>
+            <span>ضمانت کیفیت قطعات تولیدی</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <div class="machine-card">
+          <span class="machine-icon-big">🏭</span>
+          <h3>تجهیزات پیشرفته</h3>
+          <p>دستگاه‌های تراش و فرز مدرن برای بالاترین کیفیت ماشین‌کاری</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <div class="services-section">
+    <div class="section-header">
+      <span class="section-tag">خدمات ما</span>
+      <h2>چه کاری انجام می‌دهیم؟</h2>
+      <div class="divider center"></div>
+      <p>ارائه طیف کامل خدمات ماشین‌کاری برای صنایع مختلف</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🔩</div>
+        <h3>تراشکاری</h3>
+        <p>تراشکاری دقیق انواع قطعات فلزی با استفاده از دستگاه‌های تراش صنعتی. تولید شفت، بوش، پیچ و قطعات دوار با دقت بالا.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>فرزکاری</h3>
+        <p>فرزکاری انواع قطعات با اشکال پیچیده. ایجاد شیار، سطح‌تراشی، دندانه‌زنی و ماشین‌کاری قطعات مسطح با دقت میلیمتری.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📐</div>
+        <h3>ساخت قطعات سفارشی</h3>
+        <p>ساخت قطعات یدکی و سفارشی بر اساس نقشه‌های فنی مشتری. مناسب برای تولید تک‌قطعه تا سری‌های کوچک.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>تعمیر و بازسازی قطعات</h3>
+        <p>تعمیر، بازسازی و اورهال انواع قطعات صنعتی فرسوده. صرفه‌جویی در هزینه نسبت به تعویض قطعه نو.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>سنگ‌زنی و پرداخت</h3>
+        <p>عملیات سنگ‌زنی برای دستیابی به سطح‌کاری دقیق و صاف. مناسب برای قطعاتی که نیاز به تلرانس خیلی دقیق دارند.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💡</div>
+        <h3>مشاوره فنی</h3>
+        <p>ارائه مشاوره فنی برای انتخاب بهترین روش ساخت قطعات. کمک در طراحی قطعه برای سهولت تولید و کاهش هزینه.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="section-header">
+      <span class="section-tag">نمونه کارها</span>
+      <h2>نمونه پروژه‌های ما</h2>
+      <div class="divider center"></div>
+      <p>برخی از کارهای انجام‌شده توسط تیم ما</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <div class="portfolio-img">⚙️</div>
+        <div class="portfolio-info">
+          <h3>ساخت شفت صنعتی</h3>
+          <p>تراشکاری شفت فولادی با دقت بالا برای صنعت معدن</p>
+          <span class="portfolio-tag">تراشکاری</span>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-img">🔩</div>
+        <div class="portfolio-info">
+          <h3>تولید بوش و یاتاقان</h3>
+          <p>ساخت بوش‌های برنزی با تلرانس دقیق برای ماشین‌آلات کشاورزی</p>
+          <span class="portfolio-tag">تراشکاری</span>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-img">🏗️</div>
+        <div class="portfolio-info">
+          <h3>فرزکاری قطعات پیچیده</h3>
+          <p>ماشین‌کاری قطعات با شکل پیچیده برای صنایع خودرویی</p>
+          <span class="portfolio-tag">فرزکاری</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-notice">
+      <p>📸 برای مشاهده تصاویر واقعی از کارهای ما، با ما تماس بگیرید یا عکس‌های نمونه کار را از طریق واتساپ دریافت نمایید.</p>
+      <p style="margin-top: 0.5rem;"><a href="#contact">📞 تماس با ما</a></p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-tag">ارتباط با ما</span>
+      <h2>تماس بگیرید</h2>
+      <div class="divider center"></div>
+      <p>برای استعلام قیمت و دریافت مشاوره رایگان با ما در تماس باشید</p>
+    </div>
+
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>اطلاعات تماس</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-text">
+            <strong>آدرس</strong>
+            <span>اشترجان، اصفهان، ایران</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-text">
+            <strong>تلفن</strong>
+            <span>شماره تماس خود را وارد کنید</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">💬</div>
+          <div class="contact-item-text">
+            <strong>واتساپ</strong>
+            <span>جهت ارسال تصاویر نقشه و مشاوره سریع</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div class="contact-item-text">
+            <strong>ساعات کاری</strong>
+            <span>شنبه تا پنجشنبه: ۸ صبح تا ۶ عصر</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>نام و نام خانوادگی</label>
+            <input type="text" placeholder="مثلاً: علی رضایی" required>
+          </div>
+          <div class="form-group">
+            <label>شماره تماس</label>
+            <input type="tel" placeholder="۰۹۱۲-۳۴۵-۶۷۸۹" required>
+          </div>
+          <div class="form-group">
+            <label>نوع خدمت مورد نیاز</label>
+            <select>
+              <option>تراشکاری</option>
+              <option>فرزکاری</option>
+              <option>ساخت قطعه سفارشی</option>
+              <option>تعمیر قطعه</option>
+              <option>سایر</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>توضیحات</label>
+            <textarea placeholder="قطعه مورد نظر، جنس مواد، تعداد و هر توضیح دیگری را بنویسید..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">ارسال درخواست ✈</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="section-header">
+      <span class="section-tag">مقالات تخصصی</span>
+      <h2>راهنما و آموزش</h2>
+      <div class="divider center"></div>
+      <p>مقالات تخصصی برای آشنایی با دنیای تراشکاری و ماشین‌کاری صنعتی</p>
+    </div>
+
+    <div class="blog-grid">
+      <a href="taraghkari-chist.html" class="blog-card">
+        <div class="blog-card-top">🔩</div>
+        <div class="blog-card-body">
+          <span class="blog-tag">آموزش</span>
+          <h3>تراشکاری چیست؟ راهنمای جامع تراشکاری صنعتی</h3>
+          <p>آشنایی با فرآیند تراشکاری، انواع دستگاه‌های تراش، مواد قابل تراشکاری و کاربردهای صنعتی آن.</p>
+          <span class="blog-read-more">مطالعه مقاله ← </span>
+        </div>
+      </a>
+
+      <a href="ferezkari-chist.html" class="blog-card">
+        <div class="blog-card-top">⚡</div>
+        <div class="blog-card-body">
+          <span class="blog-tag">آموزش</span>
+          <h3>فرزکاری چیست؟ تفاوت فرز و تراش</h3>
+          <p>راهنمای جامع فرزکاری صنعتی، انواع فرزکاری، دستگاه‌های فرز و کاربردهای آن در صنعت.</p>
+          <span class="blog-read-more">مطالعه مقاله ← </span>
+        </div>
+      </a>
+
+      <a href="taraghkari-dar-isfahan.html" class="blog-card">
+        <div class="blog-card-top">📍</div>
+        <div class="blog-card-body">
+          <span class="blog-tag">راهنمای انتخاب</span>
+          <h3>تراشکاری در اصفهان — بهترین کارگاه کجاست؟</h3>
+          <p>راهنمای جامع انتخاب کارگاه تراشکاری مناسب در اصفهان. معیارها، سوالات مهم و نکات کلیدی.</p>
+          <span class="blog-read-more">مطالعه مقاله ← </span>
+        </div>
+      </a>
+
+      <a href="mazayaye-taraghkari-CNC.html" class="blog-card">
+        <div class="blog-card-top">🤖</div>
+        <div class="blog-card-body">
+          <span class="blog-tag">تکنولوژی</span>
+          <h3>مزایای تراشکاری CNC نسبت به تراشکاری معمولی</h3>
+          <p>چرا CNC دقیق‌تر، سریع‌تر و مقرون‌به‌صرفه‌تر است؟ مقایسه کامل CNC با تراشکاری سنتی.</p>
+          <span class="blog-read-more">مطالعه مقاله ← </span>
+        </div>
+      </a>
+
+      <a href="nakate-kharid-taghe-taraghkari.html" class="blog-card">
+        <div class="blog-card-top">💡</div>
+        <div class="blog-card-body">
+          <span class="blog-tag">راهنمای خرید</span>
+          <h3>نکات مهم قبل از سفارش قطعه تراشکاری</h3>
+          <p>۸ نکته طلایی برای سفارش قطعه تراشکاری، عوامل قیمت‌گذاری و اشتباهات رایج که باید از آن‌ها پرهیز کنید.</p>
+          <span class="blog-read-more">مطالعه مقاله ← </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© ۱۴۰۳ تمامی حقوق برای <span>تراشکاری پارساصنعت اصفهان</span> محفوظ است | اشترجان، اصفهان</p>
+  </footer>
+
+  <script>
+  // ===== ADMIN DATA LOADER =====
+  (function() {
+    const STORAGE_KEY = 'parsasanat_admin';
+    const defaults = {
+      contact: { phone:'', mobile:'', address:'اشترجان، اصفهان، ایران', hours:'شنبه تا پنجشنبه: ۸ صبح تا ۶ عصر', email:'', map:'' },
+      hero: { title1:'تراشکاری و فرزکاری', title2:'پارساصنعت', desc:'ارائه خدمات حرفه‌ای ماشین‌کاری دقیق با بهره‌گیری از تجهیزات پیشرفته.\nدقت، کیفیت و تحویل به موقع — تعهد ماست.' },
+      stats: { num1:'+۱۰', lbl1:'سال تجربه', num2:'+۵۰۰', lbl2:'پروژه انجام‌شده', num3:'۱۰۰٪', lbl3:'رضایت مشتری' },
+      about: { p1:'کارگاه تراشکاری و فرزکاری پارساصنعت در شهر اشترجان، استان اصفهان با سال‌ها تجربه در حوزه ماشین‌کاری صنعتی، خدمات باکیفیت و دقیق به مشتریان ارائه می‌دهد.', p2:'ما با استفاده از دستگاه‌های مدرن تراش و فرز، قطعات صنعتی را با دقت بالا و مطابق نقشه‌های فنی مشتریان تولید می‌کنیم.' },
+      logo: { name1:'پارساصنعت', name2:'اصفهان', img:'' },
+      services: [
+        { icon:'🔩', title:'تراشکاری', desc:'تراشکاری دقیق انواع قطعات فلزی با استفاده از دستگاه‌های تراش صنعتی.' },
+        { icon:'⚡', title:'فرزکاری', desc:'فرزکاری انواع قطعات با اشکال پیچیده.' },
+        { icon:'📐', title:'ساخت قطعات سفارشی', desc:'ساخت قطعات یدکی و سفارشی بر اساس نقشه‌های فنی مشتری.' },
+        { icon:'🔧', title:'تعمیر و بازسازی قطعات', desc:'تعمیر، بازسازی و اورهال انواع قطعات صنعتی فرسوده.' },
+        { icon:'🏗️', title:'سنگ‌زنی و پرداخت', desc:'عملیات سنگ‌زنی برای دستیابی به سطح‌کاری دقیق و صاف.' },
+        { icon:'💡', title:'مشاوره فنی', desc:'ارائه مشاوره فنی برای انتخاب بهترین روش ساخت قطعات.' }
+      ],
+      portfolio: [
+        { emoji:'⚙️', title:'ساخت شفت صنعتی', desc:'تراشکاری شفت فولادی با دقت بالا برای صنعت معدن', tag:'تراشکاری', img:'' },
+        { emoji:'🔩', title:'تولید بوش و یاتاقان', desc:'ساخت بوش‌های برنزی با تلرانس دقیق برای ماشین‌آلات کشاورزی', tag:'تراشکاری', img:'' },
+        { emoji:'🏗️', title:'فرزکاری قطعات پیچیده', desc:'ماشین‌کاری قطعات با شکل پیچیده برای صنایع خودرویی', tag:'فرزکاری', img:'' }
+      ],
+      articles: [
+        { icon:'🔩', title:'تراشکاری چیست؟', link:'taraghkari-chist.html' },
+        { icon:'⚡', title:'فرزکاری چیست؟', link:'ferezkari-chist.html' },
+        { icon:'📍', title:'تراشکاری در اصفهان', link:'taraghkari-dar-isfahan.html' },
+        { icon:'🏭', title:'خدمات ماشین‌کاری', link:'khadamat-mashinKari.html' },
+        { icon:'💡', title:'نکات خرید قطعه', link:'nakate-kharid-taghe-taraghkari.html' }
+      ]
+    };
+    function getData(key) { try { const d = JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); return d[key] !== undefined ? d[key] : defaults[key]; } catch(e) { return defaults[key]; } }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Logo
+      const logo = getData('logo');
+      document.querySelectorAll('.nav-logo').forEach(el => el.innerHTML = logo.name1 + ' <span>' + logo.name2 + '</span>');
+      if(logo.img) {
+        document.querySelectorAll('.nav-logo').forEach(el => {
+          el.innerHTML = '<img src="'+logo.img+'" style="height:32px;vertical-align:middle;"> ';
+        });
+      }
+
+      // Hero
+      const hero = getData('hero');
+      const h1 = document.querySelector('.hero h1');
+      if(h1) h1.innerHTML = hero.title1 + '<br><span class="highlight">' + hero.title2 + '</span>';
+      const hp = document.querySelector('.hero p');
+      if(hp) hp.innerHTML = hero.desc.replace(/\n/g,'<br>');
+
+      // Stats
+      const s = getData('stats');
+      const statNums = document.querySelectorAll('.stat-number');
+      const statLbls = document.querySelectorAll('.stat-label');
+      if(statNums[0]) statNums[0].textContent = s.num1;
+      if(statNums[1]) statNums[1].textContent = s.num2;
+      if(statNums[2]) statNums[2].textContent = s.num3;
+      if(statLbls[0]) statLbls[0].textContent = s.lbl1;
+      if(statLbls[1]) statLbls[1].textContent = s.lbl2;
+      if(statLbls[2]) statLbls[2].textContent = s.lbl3;
+
+      // About
+      const about = getData('about');
+      const aboutPs = document.querySelectorAll('.about-text p');
+      if(aboutPs[0]) aboutPs[0].textContent = about.p1;
+      if(aboutPs[1]) aboutPs[1].textContent = about.p2;
+
+      // Contact
+      const c = getData('contact');
+      const contactItems = document.querySelectorAll('.contact-item-text span');
+      if(contactItems[0]) contactItems[0].textContent = c.address || 'اشترجان، اصفهان، ایران';
+      if(contactItems[1]) contactItems[1].textContent = (c.phone ? c.phone + ' | ' : '') + (c.mobile || 'شماره تماس خود را وارد کنید');
+      if(contactItems[2]) contactItems[2].textContent = c.mobile ? c.mobile + ' (واتساپ)' : 'جهت ارسال تصاویر نقشه و مشاوره سریع';
+      if(contactItems[3]) contactItems[3].textContent = c.hours || 'شنبه تا پنجشنبه: ۸ صبح تا ۶ عصر';
+
+      // Services
+      const services = getData('services');
+      const servicesGrid = document.querySelector('.services-grid');
+      if(servicesGrid && services.length) {
+        servicesGrid.innerHTML = services.map(sv => `
+          <div class="service-card">
+            <div class="service-icon">${sv.icon}</div>
+            <h3>${sv.title}</h3>
+            <p>${sv.desc}</p>
+          </div>`).join('');
+      }
+
+      // Portfolio
+      const portfolio = getData('portfolio');
+      const portfolioGrid = document.querySelector('.portfolio-grid');
+      if(portfolioGrid && portfolio.length) {
+        portfolioGrid.innerHTML = portfolio.map(p => `
+          <div class="portfolio-item">
+            <div class="portfolio-img">
+              ${p.img ? '<img src="'+p.img+'" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="'+p.title+'">' : p.emoji||'🖼️'}
+            </div>
+            <div class="portfolio-info">
+              <h3>${p.title}</h3>
+              <p>${p.desc}</p>
+              <span class="portfolio-tag">${p.tag||''}</span>
+            </div>
+          </div>`).join('');
+      }
+
+      // Articles/Blog
+      const articles = getData('articles');
+      const blogGrid = document.querySelector('.blog-grid');
+      if(blogGrid && articles.length) {
+        blogGrid.innerHTML = articles.map(a => `
+          <a href="${a.link}" class="blog-card">
+            <div class="blog-card-top">${a.icon||'📝'}</div>
+            <div class="blog-card-body">
+              <span class="blog-tag">مقاله</span>
+              <h3>${a.title}</h3>
+              <span class="blog-read-more">مطالعه مقاله ←</span>
+            </div>
+          </a>`).join('');
+      }
+    });
+
+    // Listen for updates from admin panel
+    try {
+      const bc = new BroadcastChannel('parsasanat');
+      bc.onmessage = () => location.reload();
+    } catch(e) {}
+  })();
+  </script>
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(26, 31, 46, 0.97)';
+        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+      } else {
+        nav.style.background = 'rgba(26, 31, 46, 0.85)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.service-card, .portfolio-item, .contact-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = '✅ پیام شما ارسال شد! به زودی تماس می‌گیریم';
+      btn.style.background = 'linear-gradient(135deg, #2d7a3a, #3a9e4a)';
+      btn.style.color = 'white';
+      btn.disabled = true;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پنل مدیریت | پارساصنعت اصفهان</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
+    :root {
+      --steel: #1a1f2e; --steel-mid: #232a3b; --steel-light: #2d3650;
+      --gold: #c8922a; --gold-light: #e8a830; --silver: #8a9ab5; --white: #f0f4ff;
+      --success: #2ecc71; --danger: #e74c3c; --warning: #f39c12;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Vazirmatn', sans-serif; background: var(--steel); color: var(--white); min-height: 100vh; }
+
+    /* ===== LOGIN ===== */
+    #login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at center, var(--steel-mid) 0%, var(--steel) 70%);
+    }
+    .login-box {
+      background: var(--steel-mid); border: 1px solid rgba(200,146,42,0.25);
+      border-radius: 20px; padding: 3rem 2.5rem; width: 100%; max-width: 400px; text-align: center;
+    }
+    .login-logo { font-size: 1.5rem; font-weight: 900; color: var(--gold); margin-bottom: 0.3rem; }
+    .login-sub { color: var(--silver); font-size: 0.85rem; margin-bottom: 2rem; }
+    .login-box input {
+      width: 100%; background: var(--steel); border: 1px solid rgba(200,146,42,0.2);
+      border-radius: 10px; padding: 0.9rem 1rem; color: var(--white);
+      font-family: 'Vazirmatn', sans-serif; font-size: 0.95rem; margin-bottom: 1rem;
+      outline: none; transition: border-color 0.2s; text-align: center;
+    }
+    .login-box input:focus { border-color: var(--gold); }
+    .login-btn {
+      width: 100%; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--steel); border: none; padding: 0.9rem; border-radius: 10px;
+      font-size: 1rem; font-weight: 700; font-family: 'Vazirmatn', sans-serif;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(200,146,42,0.4); }
+    .login-error { color: var(--danger); font-size: 0.85rem; margin-top: 0.8rem; display: none; }
+
+    /* ===== ADMIN LAYOUT ===== */
+    #admin-screen { display: none; min-height: 100vh; }
+    .admin-layout { display: flex; min-height: 100vh; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px; background: var(--steel-mid); border-left: 1px solid rgba(200,146,42,0.15);
+      display: flex; flex-direction: column; position: fixed; height: 100vh; overflow-y: auto; z-index: 50;
+    }
+    .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(200,146,42,0.15); }
+    .sidebar-logo { font-size: 1.1rem; font-weight: 900; color: var(--gold); }
+    .sidebar-logo span { color: var(--silver); font-size: 0.75rem; font-weight: 400; display: block; margin-top: 0.2rem; }
+    .nav-section { padding: 1rem 0; }
+    .nav-label { font-size: 0.68rem; color: var(--silver); letter-spacing: 2px; padding: 0 1.5rem; margin-bottom: 0.5rem; opacity: 0.6; }
+    .nav-item {
+      display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 1.5rem;
+      color: var(--silver); font-size: 0.88rem; cursor: pointer; transition: all 0.2s;
+      border-right: 3px solid transparent;
+    }
+    .nav-item:hover { color: var(--white); background: rgba(200,146,42,0.07); }
+    .nav-item.active { color: var(--gold); background: rgba(200,146,42,0.1); border-right-color: var(--gold); }
+    .nav-icon { font-size: 1.1rem; width: 20px; text-align: center; }
+    .sidebar-footer { margin-top: auto; padding: 1rem 1.5rem; border-top: 1px solid rgba(200,146,42,0.15); }
+    .logout-btn {
+      width: 100%; background: rgba(231,76,60,0.15); border: 1px solid rgba(231,76,60,0.3);
+      color: #e74c3c; padding: 0.6rem; border-radius: 8px; font-size: 0.85rem;
+      font-family: 'Vazirmatn', sans-serif; cursor: pointer; transition: all 0.2s;
+    }
+    .logout-btn:hover { background: rgba(231,76,60,0.25); }
+
+    /* Main content */
+    .main-content { margin-right: 260px; flex: 1; padding: 2rem; min-height: 100vh; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .page-title { font-size: 1.4rem; font-weight: 700; }
+    .preview-btn {
+      background: rgba(200,146,42,0.15); border: 1px solid rgba(200,146,42,0.3);
+      color: var(--gold); padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .preview-btn:hover { background: rgba(200,146,42,0.25); }
+
+    /* Panels */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* Cards */
+    .card {
+      background: var(--steel-mid); border: 1px solid rgba(200,146,42,0.12);
+      border-radius: 16px; padding: 1.8rem; margin-bottom: 1.5rem;
+    }
+    .card-title { font-size: 1rem; font-weight: 700; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+    /* Form elements */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-row.single { grid-template-columns: 1fr; }
+    .field-group { margin-bottom: 1rem; }
+    .field-label { font-size: 0.8rem; color: var(--silver); margin-bottom: 0.4rem; display: block; }
+    .field-input, .field-textarea, .field-select {
+      width: 100%; background: var(--steel); border: 1px solid rgba(200,146,42,0.2);
+      border-radius: 8px; padding: 0.7rem 0.9rem; color: var(--white);
+      font-family: 'Vazirmatn', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.2s;
+    }
+    .field-input:focus, .field-textarea:focus { border-color: var(--gold); }
+    .field-textarea { min-height: 100px; resize: vertical; }
+    .field-select { cursor: pointer; }
+    .field-select option { background: var(--steel-mid); }
+
+    /* Buttons */
+    .btn-save {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--steel); border: none; padding: 0.7rem 1.8rem;
+      border-radius: 8px; font-size: 0.9rem; font-weight: 700;
+      font-family: 'Vazirmatn', sans-serif; cursor: pointer; transition: all 0.3s;
+    }
+    .btn-save:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,146,42,0.4); }
+    .btn-danger {
+      background: rgba(231,76,60,0.15); border: 1px solid rgba(231,76,60,0.3);
+      color: #e74c3c; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.82rem;
+      font-family: 'Vazirmatn', sans-serif; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-danger:hover { background: rgba(231,76,60,0.25); }
+    .btn-add {
+      background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.3);
+      color: #2ecc71; padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.85rem;
+      font-family: 'Vazirmatn', sans-serif; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-add:hover { background: rgba(46,204,113,0.2); }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 2rem; left: 2rem; background: var(--success);
+      color: white; padding: 0.8rem 1.5rem; border-radius: 10px; font-size: 0.88rem;
+      transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 9999;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* Portfolio grid */
+    .portfolio-admin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .portfolio-admin-item {
+      background: var(--steel); border: 1px solid rgba(200,146,42,0.1); border-radius: 12px;
+      overflow: hidden; position: relative;
+    }
+    .portfolio-admin-img {
+      height: 120px; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; background: var(--steel-light); position: relative;
+    }
+    .portfolio-admin-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .portfolio-admin-info { padding: 0.8rem; }
+    .portfolio-admin-info input {
+      width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(200,146,42,0.2);
+      color: var(--white); font-family: 'Vazirmatn', sans-serif; font-size: 0.78rem; padding: 0.2rem 0; margin-bottom: 0.4rem; outline: none;
+    }
+    .portfolio-admin-actions { display: flex; gap: 0.4rem; padding: 0.5rem 0.8rem; border-top: 1px solid rgba(200,146,42,0.1); }
+
+    /* Services list */
+    .service-admin-item {
+      background: var(--steel); border: 1px solid rgba(200,146,42,0.1); border-radius: 10px;
+      padding: 1rem; margin-bottom: 0.8rem; display: grid; grid-template-columns: auto 1fr 1fr auto; gap: 1rem; align-items: center;
+    }
+    .service-emoji-picker { font-size: 1.5rem; cursor: pointer; padding: 0.3rem; border-radius: 6px; background: var(--steel-mid); border: none; }
+
+    /* Stats dashboard */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: var(--steel-mid); border: 1px solid rgba(200,146,42,0.12); border-radius: 14px; padding: 1.3rem; text-align: center; }
+    .stat-card .num { font-size: 2rem; font-weight: 900; color: var(--gold); }
+    .stat-card .lbl { font-size: 0.78rem; color: var(--silver); margin-top: 0.3rem; }
+
+    /* Password change */
+    .security-card { background: rgba(231,76,60,0.05); border: 1px solid rgba(231,76,60,0.2); border-radius: 16px; padding: 1.8rem; }
+
+    /* Logo upload */
+    .logo-upload-area {
+      border: 2px dashed rgba(200,146,42,0.3); border-radius: 12px; padding: 2rem;
+      text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 1rem;
+    }
+    .logo-upload-area:hover { border-color: var(--gold); background: rgba(200,146,42,0.05); }
+    .logo-preview { max-height: 80px; margin: 0 auto 1rem; display: block; }
+    .logo-text-preview { font-size: 1.5rem; font-weight: 900; color: var(--gold); margin-bottom: 0.5rem; }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .sidebar { width: 100%; height: auto; position: relative; }
+      .main-content { margin-right: 0; }
+      .admin-layout { flex-direction: column; }
+      .form-row { grid-template-columns: 1fr; }
+      .service-admin-item { grid-template-columns: auto 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">🏭 پارساصنعت</div>
+    <div class="login-sub">پنل مدیریت سایت</div>
+    <input type="password" id="password-input" placeholder="رمز عبور را وارد کنید" onkeydown="if(event.key==='Enter') doLogin()">
+    <button class="login-btn" onclick="doLogin()">ورود به پنل مدیریت</button>
+    <div class="login-error" id="login-error">❌ رمز عبور اشتباه است</div>
+  </div>
+</div>
+
+<!-- ===== ADMIN ===== -->
+<div id="admin-screen">
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">پنل مدیریت<span>پارساصنعت اصفهان</span></div>
+      </div>
+      <nav class="nav-section">
+        <div class="nav-label">مدیریت</div>
+        <div class="nav-item active" onclick="showPanel('dashboard')"><span class="nav-icon">📊</span> داشبورد</div>
+        <div class="nav-item" onclick="showPanel('contact')"><span class="nav-icon">📞</span> اطلاعات تماس</div>
+        <div class="nav-item" onclick="showPanel('hero')"><span class="nav-icon">🏠</span> متن صفحه اصلی</div>
+        <div class="nav-item" onclick="showPanel('services')"><span class="nav-icon">⚙️</span> خدمات</div>
+        <div class="nav-item" onclick="showPanel('portfolio')"><span class="nav-icon">🖼️</span> نمونه کارها</div>
+        <div class="nav-item" onclick="showPanel('logo')"><span class="nav-icon">🎨</span> لوگو و نام</div>
+        <div class="nav-item" onclick="showPanel('articles')"><span class="nav-icon">📝</span> مقالات</div>
+        <div class="nav-item" onclick="showPanel('stats')"><span class="nav-icon">📈</span> آمار سایت</div>
+        <div class="nav-item" onclick="showPanel('security')"><span class="nav-icon">🔒</span> امنیت</div>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="doLogout()">🚪 خروج از پنل</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+      <div class="topbar">
+        <div class="page-title" id="panel-title">داشبورد</div>
+        <a href="index.html" target="_blank" class="preview-btn">👁 مشاهده سایت</a>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="panel active" id="panel-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card"><div class="num" id="dash-services">6</div><div class="lbl">خدمات</div></div>
+          <div class="stat-card"><div class="num" id="dash-portfolio">3</div><div class="lbl">نمونه کار</div></div>
+          <div class="stat-card"><div class="num" id="dash-articles">5</div><div class="lbl">مقاله</div></div>
+          <div class="stat-card"><div class="num">✅</div><div class="lbl">سایت فعال</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">🚀 راهنمای سریع</div>
+          <p style="color:var(--silver); font-size:0.9rem; line-height:2;">
+            ۱. هر تغییری که می‌دهید را با دکمه <strong style="color:var(--gold)">«ذخیره تغییرات»</strong> ثبت کنید.<br>
+            ۲. بعد از ذخیره، صفحه اصلی سایت بلافاصله آپدیت می‌شود.<br>
+            ۳. برای دیدن نتیجه، روی «مشاهده سایت» کلیک کنید.<br>
+            ۴. تغییرات در مرورگر ذخیره می‌شوند — برای بکاپ از «Export» استفاده کنید.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">💾 بکاپ و ریستور</div>
+          <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+            <button class="btn-save" onclick="exportData()">📤 Export بکاپ</button>
+            <button class="btn-add" onclick="document.getElementById('import-file').click()">📥 Import بکاپ</button>
+            <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
+            <button class="btn-danger" onclick="resetAll()">🗑 ریست همه تغییرات</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="panel" id="panel-contact">
+        <div class="card">
+          <div class="card-title">📞 اطلاعات تماس</div>
+          <div class="form-row">
+            <div class="field-group">
+              <label class="field-label">شماره تلفن</label>
+              <input class="field-input" id="c-phone" placeholder="مثلاً: ۰۳۱-۳۴۵۶۷۸۹۰">
+            </div>
+            <div class="field-group">
+              <label class="field-label">شماره موبایل / واتساپ</label>
+              <input class="field-input" id="c-mobile" placeholder="مثلاً: ۰۹۱۳-۱۲۳-۴۵۶۷">
+            </div>
+          </div>
+          <div class="form-row single">
+            <div class="field-group">
+              <label class="field-label">آدرس کامل</label>
+              <input class="field-input" id="c-address" placeholder="اصفهان، اشترجان، ...">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field-group">
+              <label class="field-label">ساعات کاری</label>
+              <input class="field-input" id="c-hours" placeholder="شنبه تا پنجشنبه ۸ تا ۱۸">
+            </div>
+            <div class="field-group">
+              <label class="field-label">ایمیل (اختیاری)</label>
+              <input class="field-input" id="c-email" placeholder="info@example.com">
+            </div>
+          </div>
+          <div class="form-row single">
+            <div class="field-group">
+              <label class="field-label">لینک Google Maps (اختیاری)</label>
+              <input class="field-input" id="c-map" placeholder="https://maps.google.com/...">
+            </div>
+          </div>
+          <button class="btn-save" onclick="saveContact()">💾 ذخیره تغییرات</button>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="panel" id="panel-hero">
+        <div class="card">
+          <div class="card-title">🏠 متن صفحه اصلی (Hero)</div>
+          <div class="field-group">
+            <label class="field-label">تیتر اصلی (خط اول)</label>
+            <input class="field-input" id="h-title1" placeholder="تراشکاری و فرزکاری">
+          </div>
+          <div class="field-group">
+            <label class="field-label">تیتر اصلی (خط دوم - برجسته)</label>
+            <input class="field-input" id="h-title2" placeholder="پارساصنعت">
+          </div>
+          <div class="field-group">
+            <label class="field-label">توضیح زیر تیتر</label>
+            <textarea class="field-textarea" id="h-desc" placeholder="ارائه خدمات حرفه‌ای ماشین‌کاری دقیق..."></textarea>
+          </div>
+          <button class="btn-save" onclick="saveHero()">💾 ذخیره تغییرات</button>
+        </div>
+        <div class="card">
+          <div class="card-title">📊 آمار (Hero Stats)</div>
+          <div class="form-row">
+            <div class="field-group">
+              <label class="field-label">آمار ۱ - عدد</label>
+              <input class="field-input" id="s-num1" placeholder="+۱۰">
+            </div>
+            <div class="field-group">
+              <label class="field-label">آمار ۱ - برچسب</label>
+              <input class="field-input" id="s-lbl1" placeholder="سال تجربه">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field-group">
+              <label class="field-label">آمار ۲ - عدد</label>
+              <input class="field-input" id="s-num2" placeholder="+۵۰۰">
+            </div>
+            <div class="field-group">
+              <label class="field-label">آمار ۲ - برچسب</label>
+              <input class="field-input" id="s-lbl2" placeholder="پروژه انجام‌شده">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field-group">
+              <label class="field-label">آمار ۳ - عدد</label>
+              <input class="field-input" id="s-num3" placeholder="۱۰۰٪">
+            </div>
+            <div class="field-group">
+              <label class="field-label">آمار ۳ - برچسب</label>
+              <input class="field-input" id="s-lbl3" placeholder="رضایت مشتری">
+            </div>
+          </div>
+          <button class="btn-save" onclick="saveStats()">💾 ذخیره تغییرات</button>
+        </div>
+        <div class="card">
+          <div class="card-title">🏭 بخش درباره ما</div>
+          <div class="field-group">
+            <label class="field-label">پاراگراف اول</label>
+            <textarea class="field-textarea" id="about-p1"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">پاراگراف دوم</label>
+            <textarea class="field-textarea" id="about-p2"></textarea>
+          </div>
+          <button class="btn-save" onclick="saveAbout()">💾 ذخیره تغییرات</button>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="panel" id="panel-services">
+        <div class="card">
+          <div class="card-title">⚙️ مدیریت خدمات</div>
+          <div id="services-list"></div>
+          <button class="btn-add" onclick="addService()">+ افزودن خدمت جدید</button>
+          <br><br>
+          <button class="btn-save" onclick="saveServices()">💾 ذخیره تمام خدمات</button>
+        </div>
+      </div>
+
+      <!-- PORTFOLIO -->
+      <div class="panel" id="panel-portfolio">
+        <div class="card">
+          <div class="card-title">🖼️ مدیریت نمونه کارها</div>
+          <div class="portfolio-admin-grid" id="portfolio-grid"></div>
+          <button class="btn-add" onclick="addPortfolioItem()">+ افزودن نمونه کار</button>
+          <br><br>
+          <button class="btn-save" onclick="savePortfolio()">💾 ذخیره نمونه کارها</button>
+        </div>
+      </div>
+
+      <!-- LOGO -->
+      <div class="panel" id="panel-logo">
+        <div class="card">
+          <div class="card-title">🎨 لوگو و نام سایت</div>
+          <div class="field-group">
+            <label class="field-label">نام کارگاه (بخش اول - طلایی)</label>
+            <input class="field-input" id="logo-name1" placeholder="پارساصنعت">
+          </div>
+          <div class="field-group">
+            <label class="field-label">نام کارگاه (بخش دوم - سفید)</label>
+            <input class="field-input" id="logo-name2" placeholder="اصفهان">
+          </div>
+          <div class="field-group">
+            <label class="field-label">آپلود لوگو تصویری (PNG/SVG)</label>
+            <div class="logo-upload-area" onclick="document.getElementById('logo-file').click()">
+              <img id="logo-preview-img" src="" alt="" class="logo-preview" style="display:none;">
+              <div id="logo-preview-text" class="logo-text-preview">پارساصنعت</div>
+              <div style="color:var(--silver); font-size:0.82rem;">کلیک کنید یا فایل را اینجا رها کنید</div>
+              <div style="color:var(--silver); font-size:0.72rem; margin-top:0.3rem;">PNG, SVG, JPG — حداکثر ۲MB</div>
+            </div>
+            <input type="file" id="logo-file" accept="image/*" style="display:none" onchange="handleLogoUpload(event)">
+          </div>
+          <button class="btn-save" onclick="saveLogo()">💾 ذخیره لوگو</button>
+        </div>
+      </div>
+
+      <!-- ARTICLES -->
+      <div class="panel" id="panel-articles">
+        <div class="card">
+          <div class="card-title">📝 مدیریت مقالات</div>
+          <div id="articles-list"></div>
+          <button class="btn-add" onclick="addArticle()">+ افزودن مقاله جدید</button>
+          <br><br>
+          <button class="btn-save" onclick="saveArticles()">💾 ذخیره مقالات</button>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="panel" id="panel-stats">
+        <div class="card">
+          <div class="card-title">📈 وضعیت محتوا</div>
+          <div class="stats-grid">
+            <div class="stat-card"><div class="num" id="stat-services">-</div><div class="lbl">خدمات فعال</div></div>
+            <div class="stat-card"><div class="num" id="stat-portfolio">-</div><div class="lbl">نمونه کار</div></div>
+            <div class="stat-card"><div class="num" id="stat-articles">-</div><div class="lbl">مقاله</div></div>
+            <div class="stat-card"><div class="num" id="stat-changes">0</div><div class="lbl">تغییر اعمال‌شده</div></div>
+          </div>
+          <p style="color:var(--silver); font-size:0.85rem; line-height:1.8;">
+            ⚡ تغییرات در <strong style="color:var(--gold)">localStorage</strong> مرورگر ذخیره می‌شوند.<br>
+            💡 برای انتقال به مرورگر دیگر، از Export/Import بکاپ استفاده کنید.<br>
+            📌 سایت GitHub Pages باید فایل‌های HTML را هم آپدیت کنید تا تغییرات دائمی شوند.
+          </p>
+        </div>
+      </div>
+
+      <!-- SECURITY -->
+      <div class="panel" id="panel-security">
+        <div class="security-card">
+          <div class="card-title" style="color:#e74c3c;">🔒 تغییر رمز عبور</div>
+          <div class="field-group">
+            <label class="field-label">رمز عبور فعلی</label>
+            <input type="password" class="field-input" id="old-pass">
+          </div>
+          <div class="field-group">
+            <label class="field-label">رمز عبور جدید</label>
+            <input type="password" class="field-input" id="new-pass">
+          </div>
+          <div class="field-group">
+            <label class="field-label">تکرار رمز عبور جدید</label>
+            <input type="password" class="field-input" id="new-pass2">
+          </div>
+          <button class="btn-save" onclick="changePassword()" style="background:linear-gradient(135deg,#e74c3c,#c0392b);">🔒 تغییر رمز عبور</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== CONFIG =====
+const DEFAULT_PASS = 'parsa1234';
+const STORAGE_KEY = 'parsasanat_admin';
+let changeCount = 0;
+
+// ===== DATA DEFAULTS =====
+const defaults = {
+  password: DEFAULT_PASS,
+  contact: {
+    phone: '۰۳۱-XXXXXXXX', mobile: '۰۹۱۳-XXX-XXXX',
+    address: 'اصفهان، اشترجان', hours: 'شنبه تا پنجشنبه: ۸ صبح تا ۶ عصر',
+    email: '', map: ''
+  },
+  hero: {
+    title1: 'تراشکاری و فرزکاری', title2: 'پارساصنعت',
+    desc: 'ارائه خدمات حرفه‌ای ماشین‌کاری دقیق با بهره‌گیری از تجهیزات پیشرفته.\nدقت، کیفیت و تحویل به موقع — تعهد ماست.'
+  },
+  stats: { num1:'+۱۰', lbl1:'سال تجربه', num2:'+۵۰۰', lbl2:'پروژه انجام‌شده', num3:'۱۰۰٪', lbl3:'رضایت مشتری' },
+  about: {
+    p1: 'کارگاه تراشکاری و فرزکاری پارساصنعت در شهر اشترجان، استان اصفهان با سال‌ها تجربه در حوزه ماشین‌کاری صنعتی، خدمات باکیفیت و دقیق به مشتریان ارائه می‌دهد.',
+    p2: 'ما با استفاده از دستگاه‌های مدرن تراش و فرز، قطعات صنعتی را با دقت بالا و مطابق نقشه‌های فنی مشتریان تولید می‌کنیم.'
+  },
+  logo: { name1: 'پارساصنعت', name2: 'اصفهان', img: '' },
+  services: [
+    { icon:'🔩', title:'تراشکاری', desc:'تراشکاری دقیق انواع قطعات فلزی با استفاده از دستگاه‌های تراش صنعتی. تولید شفت، بوش، پیچ و قطعات دوار با دقت بالا.' },
+    { icon:'⚡', title:'فرزکاری', desc:'فرزکاری انواع قطعات با اشکال پیچیده. ایجاد شیار، سطح‌تراشی، دندانه‌زنی و ماشین‌کاری قطعات مسطح با دقت میلیمتری.' },
+    { icon:'📐', title:'ساخت قطعات سفارشی', desc:'ساخت قطعات یدکی و سفارشی بر اساس نقشه‌های فنی مشتری.' },
+    { icon:'🔧', title:'تعمیر و بازسازی قطعات', desc:'تعمیر، بازسازی و اورهال انواع قطعات صنعتی فرسوده.' },
+    { icon:'🏗️', title:'سنگ‌زنی و پرداخت', desc:'عملیات سنگ‌زنی برای دستیابی به سطح‌کاری دقیق و صاف.' },
+    { icon:'💡', title:'مشاوره فنی', desc:'ارائه مشاوره فنی برای انتخاب بهترین روش ساخت قطعات.' }
+  ],
+  portfolio: [
+    { emoji:'⚙️', title:'ساخت شفت صنعتی', desc:'تراشکاری شفت فولادی با دقت بالا', tag:'تراشکاری', img:'' },
+    { emoji:'🔩', title:'تولید بوش و یاتاقان', desc:'ساخت بوش‌های برنزی با تلرانس دقیق', tag:'تراشکاری', img:'' },
+    { emoji:'🏗️', title:'فرزکاری قطعات پیچیده', desc:'ماشین‌کاری قطعات با شکل پیچیده', tag:'فرزکاری', img:'' }
+  ],
+  articles: [
+    { title:'تراشکاری چیست؟', link:'taraghkari-chist.html', icon:'🔩' },
+    { title:'فرزکاری چیست؟', link:'ferezkari-chist.html', icon:'⚡' },
+    { title:'تراشکاری در اصفهان', link:'taraghkari-dar-isfahan.html', icon:'📍' },
+    { title:'خدمات ماشین‌کاری', link:'khadamat-mashinKari.html', icon:'🏭' },
+    { title:'نکات خرید قطعه', link:'nakate-kharid-taghe-taraghkari.html', icon:'💡' }
+  ]
+};
+
+// ===== STORAGE =====
+function load() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; } }
+function save(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); changeCount++; document.getElementById('stat-changes').textContent = changeCount; }
+function getData(key) { const d = load(); return d[key] !== undefined ? d[key] : defaults[key]; }
+function setData(key, val) { const d = load(); d[key] = val; save(d); }
+
+// ===== LOGIN =====
+function doLogin() {
+  const pass = document.getElementById('password-input').value;
+  const stored = getData('password');
+  if (pass === stored) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display = 'block';
+    initAdmin();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('password-input').value = '';
+  }
+}
+function doLogout() {
+  document.getElementById('admin-screen').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('password-input').value = '';
+  document.getElementById('login-error').style.display = 'none';
+}
+
+// ===== NAVIGATION =====
+const panelTitles = {
+  dashboard:'داشبورد', contact:'اطلاعات تماس', hero:'متن صفحه اصلی',
+  services:'مدیریت خدمات', portfolio:'نمونه کارها', logo:'لوگو و نام',
+  articles:'مقالات', stats:'آمار سایت', security:'امنیت'
+};
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  document.getElementById('panel-title').textContent = panelTitles[name];
+  event.currentTarget.classList.add('active');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ===== INIT =====
+function initAdmin() {
+  loadContact(); loadHero(); loadStats(); loadAbout(); loadLogo();
+  renderServices(); renderPortfolio(); renderArticles();
+  updateDashStats();
+}
+
+// ===== CONTACT =====
+function loadContact() {
+  const d = getData('contact');
+  ['phone','mobile','address','hours','email','map'].forEach(k => {
+    const el = document.getElementById('c-'+k);
+    if(el) el.value = d[k] || '';
+  });
+}
+function saveContact() {
+  const d = {};
+  ['phone','mobile','address','hours','email','map'].forEach(k => {
+    d[k] = document.getElementById('c-'+k).value;
+  });
+  setData('contact', d);
+  applyToMainPage();
+  showToast('✅ اطلاعات تماس ذخیره شد');
+}
+
+// ===== HERO =====
+function loadHero() {
+  const h = getData('hero');
+  document.getElementById('h-title1').value = h.title1 || '';
+  document.getElementById('h-title2').value = h.title2 || '';
+  document.getElementById('h-desc').value = h.desc || '';
+}
+function saveHero() {
+  setData('hero', {
+    title1: document.getElementById('h-title1').value,
+    title2: document.getElementById('h-title2').value,
+    desc: document.getElementById('h-desc').value
+  });
+  applyToMainPage();
+  showToast('✅ متن صفحه اصلی ذخیره شد');
+}
+
+// ===== STATS =====
+function loadStats() {
+  const s = getData('stats');
+  ['num1','lbl1','num2','lbl2','num3','lbl3'].forEach(k => {
+    document.getElementById('s-'+k).value = s[k] || '';
+  });
+}
+function saveStats() {
+  const d = {};
+  ['num1','lbl1','num2','lbl2','num3','lbl3'].forEach(k => d[k] = document.getElementById('s-'+k).value);
+  setData('stats', d);
+  applyToMainPage();
+  showToast('✅ آمار ذخیره شد');
+}
+
+// ===== ABOUT =====
+function loadAbout() {
+  const a = getData('about');
+  document.getElementById('about-p1').value = a.p1 || '';
+  document.getElementById('about-p2').value = a.p2 || '';
+}
+function saveAbout() {
+  setData('about', {
+    p1: document.getElementById('about-p1').value,
+    p2: document.getElementById('about-p2').value
+  });
+  applyToMainPage();
+  showToast('✅ درباره ما ذخیره شد');
+}
+
+// ===== LOGO =====
+function loadLogo() {
+  const l = getData('logo');
+  document.getElementById('logo-name1').value = l.name1 || '';
+  document.getElementById('logo-name2').value = l.name2 || '';
+  document.getElementById('logo-preview-text').textContent = (l.name1||'') + ' ' + (l.name2||'');
+  if(l.img) {
+    document.getElementById('logo-preview-img').src = l.img;
+    document.getElementById('logo-preview-img').style.display = 'block';
+    document.getElementById('logo-preview-text').style.display = 'none';
+  }
+}
+function handleLogoUpload(e) {
+  const file = e.target.files[0];
+  if(!file) return;
+  if(file.size > 2*1024*1024) { showToast('❌ فایل بیش از ۲MB است'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const data = ev.target.result;
+    document.getElementById('logo-preview-img').src = data;
+    document.getElementById('logo-preview-img').style.display = 'block';
+    document.getElementById('logo-preview-text').style.display = 'none';
+    const l = getData('logo'); l.img = data; setData('logo', l);
+  };
+  reader.readAsDataURL(file);
+}
+function saveLogo() {
+  const l = getData('logo');
+  l.name1 = document.getElementById('logo-name1').value;
+  l.name2 = document.getElementById('logo-name2').value;
+  document.getElementById('logo-preview-text').textContent = l.name1 + ' ' + l.name2;
+  setData('logo', l);
+  applyToMainPage();
+  showToast('✅ لوگو ذخیره شد');
+}
+
+// ===== SERVICES =====
+function renderServices() {
+  const services = getData('services');
+  document.getElementById('dash-services').textContent = services.length;
+  document.getElementById('stat-services').textContent = services.length;
+  const container = document.getElementById('services-list');
+  container.innerHTML = '';
+  services.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = 'service-admin-item';
+    div.innerHTML = `
+      <input class="field-input" value="${s.icon}" style="width:60px;text-align:center;font-size:1.3rem;" id="si-icon-${i}">
+      <input class="field-input" value="${s.title}" placeholder="عنوان خدمت" id="si-title-${i}">
+      <input class="field-input" value="${s.desc}" placeholder="توضیح کوتاه" id="si-desc-${i}">
+      <button class="btn-danger" onclick="removeService(${i})">🗑</button>
+    `;
+    container.appendChild(div);
+  });
+}
+function addService() {
+  const services = getData('services');
+  services.push({ icon:'⚙️', title:'خدمت جدید', desc:'توضیح خدمت' });
+  setData('services', services);
+  renderServices();
+}
+function removeService(i) {
+  const services = getData('services');
+  services.splice(i, 1);
+  setData('services', services);
+  renderServices();
+}
+function saveServices() {
+  const services = getData('services');
+  services.forEach((s, i) => {
+    s.icon = document.getElementById('si-icon-'+i)?.value || s.icon;
+    s.title = document.getElementById('si-title-'+i)?.value || s.title;
+    s.desc = document.getElementById('si-desc-'+i)?.value || s.desc;
+  });
+  setData('services', services);
+  applyToMainPage();
+  showToast('✅ خدمات ذخیره شد');
+}
+
+// ===== PORTFOLIO =====
+function renderPortfolio() {
+  const items = getData('portfolio');
+  document.getElementById('dash-portfolio').textContent = items.length;
+  document.getElementById('stat-portfolio').textContent = items.length;
+  const grid = document.getElementById('portfolio-grid');
+  grid.innerHTML = '';
+  items.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'portfolio-admin-item';
+    div.innerHTML = `
+      <div class="portfolio-admin-img" id="pf-img-${i}" onclick="uploadPortfolioImg(${i})" style="cursor:pointer;" title="کلیک برای آپلود عکس">
+        ${item.img ? `<img src="${item.img}" alt="">` : `<span>${item.emoji||'🖼️'}</span>`}
+        <div style="position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,0.6);border-radius:4px;padding:2px 6px;font-size:0.65rem;color:var(--gold);">📷 عکس</div>
+      </div>
+      <input type="file" id="pf-file-${i}" accept="image/*" style="display:none" onchange="handlePortfolioImg(event,${i})">
+      <div class="portfolio-admin-info">
+        <input value="${item.title}" placeholder="عنوان" id="pf-title-${i}">
+        <input value="${item.desc}" placeholder="توضیح" id="pf-desc-${i}">
+        <input value="${item.tag||''}" placeholder="برچسب" id="pf-tag-${i}">
+      </div>
+      <div class="portfolio-admin-actions">
+        <button class="btn-danger" onclick="removePortfolio(${i})" style="font-size:0.72rem;padding:0.3rem 0.6rem;">🗑 حذف</button>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+function uploadPortfolioImg(i) { document.getElementById('pf-file-'+i).click(); }
+function handlePortfolioImg(e, i) {
+  const file = e.target.files[0]; if(!file) return;
+  if(file.size > 3*1024*1024) { showToast('❌ فایل بیش از ۳MB است'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const items = getData('portfolio');
+    items[i].img = ev.target.result;
+    setData('portfolio', items);
+    renderPortfolio();
+  };
+  reader.readAsDataURL(file);
+}
+function addPortfolioItem() {
+  const items = getData('portfolio');
+  items.push({ emoji:'🖼️', title:'نمونه کار جدید', desc:'توضیح نمونه کار', tag:'تراشکاری', img:'' });
+  setData('portfolio', items);
+  renderPortfolio();
+}
+function removePortfolio(i) {
+  const items = getData('portfolio');
+  items.splice(i, 1);
+  setData('portfolio', items);
+  renderPortfolio();
+}
+function savePortfolio() {
+  const items = getData('portfolio');
+  items.forEach((item, i) => {
+    item.title = document.getElementById('pf-title-'+i)?.value || item.title;
+    item.desc = document.getElementById('pf-desc-'+i)?.value || item.desc;
+    item.tag = document.getElementById('pf-tag-'+i)?.value || item.tag;
+  });
+  setData('portfolio', items);
+  applyToMainPage();
+  showToast('✅ نمونه کارها ذخیره شد');
+}
+
+// ===== ARTICLES =====
+function renderArticles() {
+  const articles = getData('articles');
+  document.getElementById('dash-articles').textContent = articles.length;
+  document.getElementById('stat-articles').textContent = articles.length;
+  const container = document.getElementById('articles-list');
+  container.innerHTML = '';
+  articles.forEach((a, i) => {
+    const div = document.createElement('div');
+    div.className = 'service-admin-item';
+    div.innerHTML = `
+      <input class="field-input" value="${a.icon||'📝'}" style="width:60px;text-align:center;font-size:1.3rem;" id="art-icon-${i}">
+      <input class="field-input" value="${a.title}" placeholder="عنوان مقاله" id="art-title-${i}">
+      <input class="field-input" value="${a.link}" placeholder="لینک فایل (مثلاً article.html)" id="art-link-${i}">
+      <button class="btn-danger" onclick="removeArticle(${i})">🗑</button>
+    `;
+    container.appendChild(div);
+  });
+}
+function addArticle() {
+  const articles = getData('articles');
+  articles.push({ icon:'📝', title:'مقاله جدید', link:'new-article.html' });
+  setData('articles', articles);
+  renderArticles();
+}
+function removeArticle(i) {
+  const articles = getData('articles');
+  articles.splice(i, 1);
+  setData('articles', articles);
+  renderArticles();
+}
+function saveArticles() {
+  const articles = getData('articles');
+  articles.forEach((a, i) => {
+    a.icon = document.getElementById('art-icon-'+i)?.value || a.icon;
+    a.title = document.getElementById('art-title-'+i)?.value || a.title;
+    a.link = document.getElementById('art-link-'+i)?.value || a.link;
+  });
+  setData('articles', articles);
+  applyToMainPage();
+  showToast('✅ مقالات ذخیره شد');
+}
+
+// ===== SECURITY =====
+function changePassword() {
+  const old = document.getElementById('old-pass').value;
+  const n1 = document.getElementById('new-pass').value;
+  const n2 = document.getElementById('new-pass2').value;
+  const current = getData('password');
+  if(old !== current) { showToast('❌ رمز عبور فعلی اشتباه است'); return; }
+  if(n1.length < 6) { showToast('❌ رمز جدید باید حداقل ۶ کاراکتر باشد'); return; }
+  if(n1 !== n2) { showToast('❌ رمزهای جدید یکسان نیستند'); return; }
+  setData('password', n1);
+  ['old-pass','new-pass','new-pass2'].forEach(id => document.getElementById(id).value = '');
+  showToast('✅ رمز عبور با موفقیت تغییر کرد');
+}
+
+// ===== BACKUP =====
+function exportData() {
+  const data = load();
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'parsasanat-backup.json'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('✅ بکاپ دانلود شد');
+}
+function importData(e) {
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      initAdmin();
+      applyToMainPage();
+      showToast('✅ بکاپ با موفقیت بارگذاری شد');
+    } catch(err) { showToast('❌ فایل معتبر نیست'); }
+  };
+  reader.readAsText(file);
+}
+function resetAll() {
+  if(!confirm('آیا مطمئنید؟ تمام تغییرات حذف می‌شوند!')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  initAdmin();
+  applyToMainPage();
+  showToast('✅ همه تغییرات ریست شد');
+}
+
+// ===== APPLY TO MAIN PAGE =====
+// This updates the main index.html via postMessage if open in another tab,
+// and also stores data so index.html can read it on load.
+function applyToMainPage() {
+  // Data is already saved to localStorage - index.html reads it on page load
+  // Try to notify any open tabs
+  try {
+    const bc = new BroadcastChannel('parsasanat');
+    bc.postMessage('reload');
+    bc.close();
+  } catch(e) {}
+  updateDashStats();
+}
+
+function updateDashStats() {
+  const services = getData('services');
+  const portfolio = getData('portfolio');
+  const articles = getData('articles');
+  document.getElementById('dash-services').textContent = services.length;
+  document.getElementById('dash-portfolio').textContent = portfolio.length;
+  document.getElementById('dash-articles').textContent = articles.length;
+  document.getElementById('stat-services').textContent = services.length;
+  document.getElementById('stat-portfolio').textContent = portfolio.length;
+  document.getElementById('stat-articles').textContent = articles.length;
+}
+</script>
+</body>
+</html>
