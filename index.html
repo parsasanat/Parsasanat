@@ -7,12 +7,20 @@
   <meta name="keywords" content="تراشکاری اصفهان, فرزکاری اصفهان, تراشکاری اشترجان, ماشین‌کاری دقیق, پارساصنعت, تراشکاری صنعتی">
   <meta name="author" content="تراشکاری پارساصنعت">
   <title>تراشکاری پارساصنعت اصفهان | خدمات تراشکاری و فرزکاری</title>
-  <link rel="canonical" href="https://yourusername.github.io">
+  <link rel="canonical" href="https://parsasanat.github.io">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:title" content="تراشکاری پارساصنعت اصفهان">
   <meta property="og:description" content="خدمات تراشکاری، فرزکاری و ماشین‌کاری دقیق در اشترجان، اصفهان">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://parsasanat.github.io/images/logo-parsasanat-cnc-esfahan.png">
+  <meta property="og:url" content="https://parsasanat.github.io">
 
   <!-- Schema.org structured data for local SEO -->
   <script type="application/ld+json">
@@ -28,7 +36,7 @@
       "addressCountry": "IR"
     },
     "telephone": "",
-    "url": "https://yourusername.github.io"
+    "url": "https://parsasanat.github.io"
   }
   </script>
 
@@ -390,8 +398,25 @@
       position: relative;
     }
 
-    .machine-card {
-      background: var(--steel-light);
+    .about-visual img {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(200,146,42,0.2);
+      object-fit: cover;
+      height: 320px;
+    }
+    .about-visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    .about-visual-grid img {
+      height: 155px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid rgba(200,146,42,0.15);
+      width: 100%;
+    }
       border: 1px solid rgba(200,146,42,0.15);
       border-radius: 16px;
       padding: 2.5rem;
@@ -829,7 +854,9 @@
 
   <!-- NAVBAR -->
   <nav>
-    <div class="nav-logo">پارساصنعت <span>اصفهان</span></div>
+    <div class="nav-logo">
+      <img src="images/logo-parsasanat-dark-cnc-esfahan.png" alt="لوگو تراشکاری پارساصنعت اصفهان" style="height:44px; vertical-align:middle;">
+    </div>
     <ul class="nav-links">
       <li><a href="#about">درباره ما</a></li>
       <li><a href="#services">خدمات</a></li>
@@ -915,10 +942,14 @@
       </div>
 
       <div class="about-visual">
-        <div class="machine-card">
-          <span class="machine-icon-big">🏭</span>
-          <h3>تجهیزات پیشرفته</h3>
-          <p>دستگاه‌های تراش و فرز مدرن برای بالاترین کیفیت ماشین‌کاری</p>
+        <img src="images/kargah-taraghkari-parsasanat-ashtarjan-esfahan-1.jpg" 
+             alt="کارگاه تراشکاری پارساصنعت اشترجان اصفهان - دستگاه فرز"
+             style="width:100%; border-radius:16px; border:1px solid rgba(200,146,42,0.2); object-fit:cover; height:220px; margin-bottom:0.8rem;">
+        <div class="about-visual-grid">
+          <img src="images/kargah-taraghkari-parsasanat-ashtarjan-esfahan-2.jpg"
+               alt="نمای داخلی کارگاه پارساصنعت اصفهان">
+          <img src="images/portfolio/dastgah-cnc-ferezkari-parsasanat-esfahan.jpg"
+               alt="دستگاه CNC فرزکاری پارساصنعت اصفهان">
         </div>
       </div>
     </div>
@@ -935,22 +966,22 @@
 
     <div class="services-grid">
       <div class="service-card">
-        <div class="service-icon">🔩</div>
+        <img src="images/services/khadamat-taraghkari-parsasanat-esfahan.png" alt="خدمات تراشکاری پارساصنعت اصفهان" style="width:100%;height:140px;object-fit:contain;margin-bottom:1rem;">
         <h3>تراشکاری</h3>
         <p>تراشکاری دقیق انواع قطعات فلزی با استفاده از دستگاه‌های تراش صنعتی. تولید شفت، بوش، پیچ و قطعات دوار با دقت بالا.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">⚡</div>
+        <img src="images/services/khadamat-ferezkari-parsasanat-esfahan.png" alt="خدمات فرزکاری پارساصنعت اصفهان" style="width:100%;height:140px;object-fit:contain;margin-bottom:1rem;">
         <h3>فرزکاری</h3>
         <p>فرزکاری انواع قطعات با اشکال پیچیده. ایجاد شیار، سطح‌تراشی، دندانه‌زنی و ماشین‌کاری قطعات مسطح با دقت میلیمتری.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">📐</div>
+        <img src="images/services/dastgah-cnc-taraghkari-parsasanat.png" alt="تراشکاری CNC پارساصنعت اصفهان" style="width:100%;height:140px;object-fit:contain;margin-bottom:1rem;">
         <h3>ساخت قطعات سفارشی</h3>
         <p>ساخت قطعات یدکی و سفارشی بر اساس نقشه‌های فنی مشتری. مناسب برای تولید تک‌قطعه تا سری‌های کوچک.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">🔧</div>
+        <img src="images/services/khadamat-tamir-qate-parsasanat-esfahan.png" alt="تعمیر قطعات صنعتی پارساصنعت اصفهان" style="width:100%;height:140px;object-fit:contain;margin-bottom:1rem;">
         <h3>تعمیر و بازسازی قطعات</h3>
         <p>تعمیر، بازسازی و اورهال انواع قطعات صنعتی فرسوده. صرفه‌جویی در هزینه نسبت به تعویض قطعه نو.</p>
       </div>
@@ -978,27 +1009,63 @@
 
     <div class="portfolio-grid">
       <div class="portfolio-item">
-        <div class="portfolio-img">⚙️</div>
-        <div class="portfolio-info">
-          <h3>ساخت شفت صنعتی</h3>
-          <p>تراشکاری شفت فولادی با دقت بالا برای صنعت معدن</p>
-          <span class="portfolio-tag">تراشکاری</span>
+        <div class="portfolio-img" style="padding:0;">
+          <img src="images/portfolio/taraghkari-parsasanat-badane-mashinKari-esfahan-1.jpg" 
+               alt="ساخت بدنه ماشین‌کاری - تراشکاری پارساصنعت اصفهان"
+               style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
         </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-img">🔩</div>
         <div class="portfolio-info">
-          <h3>تولید بوش و یاتاقان</h3>
-          <p>ساخت بوش‌های برنزی با تلرانس دقیق برای ماشین‌آلات کشاورزی</p>
-          <span class="portfolio-tag">تراشکاری</span>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-img">🏗️</div>
-        <div class="portfolio-info">
-          <h3>فرزکاری قطعات پیچیده</h3>
-          <p>ماشین‌کاری قطعات با شکل پیچیده برای صنایع خودرویی</p>
+          <h3>ساخت بدنه‌های صنعتی</h3>
+          <p>ماشین‌کاری بدنه‌های فولادی با دقت بالا برای صنایع مختلف</p>
           <span class="portfolio-tag">فرزکاری</span>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-img" style="padding:0;">
+          <img src="images/portfolio/ferezkari-parsasanat-sorakhari-daqiq-esfahan.jpg"
+               alt="سوراخ‌کاری دقیق فرزکاری - پارساصنعت اصفهان"
+               style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        </div>
+        <div class="portfolio-info">
+          <h3>سوراخ‌کاری دقیق</h3>
+          <p>فرزکاری و سوراخ‌کاری با تلرانس بسیار دقیق</p>
+          <span class="portfolio-tag">فرزکاری</span>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-img" style="padding:0;">
+          <img src="images/portfolio/taraghkari-parsasanat-boosh-ring-esfahan.jpg"
+               alt="تراشکاری بوش و رینگ صنعتی - پارساصنعت اصفهان"
+               style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        </div>
+        <div class="portfolio-info">
+          <h3>تراشکاری بوش و رینگ</h3>
+          <p>ساخت بوش‌ها و رینگ‌های صنعتی با دقت بالا</p>
+          <span class="portfolio-tag">تراشکاری</span>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-img" style="padding:0;">
+          <img src="images/portfolio/taraghkari-parsasanat-badane-mashinKari-esfahan-2.jpg"
+               alt="ماشین‌کاری قطعات صنعتی - پارساصنعت اصفهان"
+               style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        </div>
+        <div class="portfolio-info">
+          <h3>ماشین‌کاری قطعات پیچیده</h3>
+          <p>تولید قطعات با شکل پیچیده و تلرانس دقیق</p>
+          <span class="portfolio-tag">فرزکاری</span>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <div class="portfolio-img" style="padding:0;">
+          <img src="images/portfolio/dastgah-cnc-ferezkari-parsasanat-esfahan.jpg"
+               alt="دستگاه CNC فرزکاری در حال کار - پارساصنعت اصفهان"
+               style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        </div>
+        <div class="portfolio-info">
+          <h3>فرزکاری CNC</h3>
+          <p>ماشین‌کاری با دستگاه CNC برای دقت بیشتر</p>
+          <span class="portfolio-tag">CNC</span>
         </div>
       </div>
     </div>
